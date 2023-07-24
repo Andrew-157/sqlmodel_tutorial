@@ -45,7 +45,7 @@ def select_heroes():
     with Session(engine) as session:
         statement = select(Hero).where(col(Hero.age) > 35)
         results = session.exec(statement)
-        hero = results.first()
+        hero = results.one()
         print("Hero:", hero)
 
 
