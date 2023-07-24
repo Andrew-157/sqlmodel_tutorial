@@ -43,9 +43,8 @@ def create_heroes():
 
 def select_heroes():
     with Session(engine) as session:
-        statement = select(Hero).where(col(Hero.age) > 35)
-        results = session.exec(statement)
-        hero = results.one()
+        hero = session.exec(select(Hero).where(
+            Hero.name == "Deadpond")).first()
         print("Hero:", hero)
 
 
