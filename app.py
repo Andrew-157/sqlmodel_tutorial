@@ -34,7 +34,7 @@ def create_heroes():
 
 def select_heroes():
     with Session(engine) as session:
-        heroes = session.exec(select(Hero)).all()
+        hero = session.exec(select(Hero).where(Hero.name == 'Deadpond'))
 
 
 def main():
