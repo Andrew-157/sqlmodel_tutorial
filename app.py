@@ -1,4 +1,4 @@
-from sqlmodel import Field, Session, SQLModel, create_engine, select
+from sqlmodel import Field, Session, SQLModel, create_engine, select, or_
 
 
 class Hero(SQLModel, table=True):
@@ -43,13 +43,7 @@ def create_heroes():
 
 def select_heroes():
     with Session(engine) as session:
-        statement = select(Hero).where(Hero.age > 30).where(Hero.age < 40)
-        # It would result in the following SQL statement:
-        # SELECT id, name, secret_name, age
-        # FROM hero
-        # WHERE age >= 35 AND age < 40
-        # The following expression would result in the same:
-        # statement = select(Hero).where(Hero.age > 30, Hero.age < 40)
+        statement = select(Hero).where(or_(Hero.age <= 35, Hero.age > 90))
         results = session.exec(statement).all()
 
 
