@@ -43,8 +43,7 @@ def create_heroes():
 
 def select_heroes():
     with Session(engine) as session:
-        hero = session.exec(select(Hero).where(
-            Hero.name == "Deadpond")).first()
+        hero = session.get(Hero, 1)
         print("Hero:", hero)
 
 
