@@ -57,6 +57,12 @@ def create_heroes():
         print("Created hero:", hero_rusty_man)
         print("Created hero:", hero_spider_boy)
 
+        hero_spider_boy.team = team_preventers
+        session.add(hero_spider_boy)
+        session.commit()
+        session.refresh(hero_spider_boy)
+        print("Updated hero:", hero_spider_boy)
+
 
 def main():
     create_db_and_tables()
